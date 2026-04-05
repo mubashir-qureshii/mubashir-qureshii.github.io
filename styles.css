@@ -1,0 +1,665 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+}
+
+.presentation {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+    padding: 2rem;
+}
+
+.slide.active {
+    opacity: 1;
+    visibility: visible;
+    animation: slideIn 0.6s ease;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.slide-content {
+    max-width: 1200px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 30px;
+    padding: 4rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.slide-number {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Title Slide */
+.title-slide {
+    text-align: center;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    border: 3px solid rgba(102, 126, 234, 0.3);
+}
+
+.title-decoration {
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    margin: 0 auto 2rem;
+    border-radius: 2px;
+}
+
+.main-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 5rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+    letter-spacing: 2px;
+}
+
+.subtitle {
+    font-size: 1.8rem;
+    color: #555;
+    font-weight: 300;
+    margin-bottom: 2rem;
+}
+
+.title-ornament {
+    font-size: 2rem;
+    color: #764ba2;
+    margin-top: 2rem;
+}
+
+/* Slide Titles */
+.slide-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    color: #333;
+    margin-bottom: 2.5rem;
+    text-align: center;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.slide-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    border-radius: 2px;
+}
+
+/* Slide 2: Definition */
+.content-grid {
+    display: grid;
+    gap: 2rem;
+}
+
+.definition-box {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding: 3rem;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.icon {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+}
+
+.definition-text {
+    font-size: 1.4rem;
+    line-height: 1.8;
+    color: #333;
+}
+
+.quote-box {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 3rem;
+    border-radius: 20px;
+    text-align: center;
+    color: white;
+}
+
+.quote {
+    font-size: 1.5rem;
+    font-style: italic;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+}
+
+.quote-author {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    font-weight: 600;
+}
+
+/* Slide 3: Paradox */
+.paradox-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.paradox-item {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding: 2.5rem;
+    border-radius: 20px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.paradox-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.paradox-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.paradox-item h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.paradox-item p {
+    font-size: 1.1rem;
+    color: #666;
+}
+
+/* Slide 4: Benefits */
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+.benefit-card {
+    background: white;
+    border: 2px solid #e0e0e0;
+    padding: 2rem;
+    border-radius: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.benefit-card:hover {
+    border-color: #667eea;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.2);
+}
+
+.benefit-icon {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+}
+
+.benefit-card h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.benefit-card p {
+    font-size: 1.1rem;
+    color: #666;
+}
+
+/* Slide 5: Pathways */
+.pathways-container {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.pathway {
+    background: linear-gradient(90deg, rgba(102, 126, 234, 0.1) 0%, rgba(255, 255, 255, 0.5) 100%);
+    padding: 2rem;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    border-left: 5px solid #667eea;
+    transition: all 0.3s ease;
+}
+
+.pathway:hover {
+    background: linear-gradient(90deg, rgba(102, 126, 234, 0.2) 0%, rgba(255, 255, 255, 0.5) 100%);
+    transform: translateX(10px);
+}
+
+.pathway-number {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.pathway h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 0.3rem;
+}
+
+.pathway p {
+    font-size: 1.1rem;
+    color: #666;
+}
+
+/* Slide 6: Comparison */
+.comparison-container {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 2rem;
+    align-items: center;
+}
+
+.comparison-side {
+    padding: 2rem;
+    border-radius: 20px;
+}
+
+.comparison-side.contentment {
+    background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+}
+
+.comparison-side.complacency {
+    background: linear-gradient(135deg, #fa8084 0%, #f4a18f 100%);
+}
+
+.comparison-side h3 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.comparison-side ul {
+    list-style: none;
+}
+
+.comparison-side li {
+    font-size: 1.2rem;
+    padding: 0.8rem 0;
+    color: #333;
+    font-weight: 500;
+}
+
+.vs-divider {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #667eea;
+    padding: 1rem;
+}
+
+/* Slide 7: Daily Practices */
+.practices-timeline {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.practice-item {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 2rem;
+    align-items: center;
+}
+
+.time-marker {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 25px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.practice-content {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding: 1.5rem 2rem;
+    border-radius: 15px;
+}
+
+.practice-content h4 {
+    font-size: 1.4rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.practice-content p {
+    font-size: 1.1rem;
+    color: #666;
+}
+
+/* Slide 8: Wisdom */
+.wisdom-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+.wisdom-card {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding: 2.5rem;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.wisdom-culture {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #667eea;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.wisdom-quote {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: #333;
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+}
+
+.wisdom-attribution {
+    font-size: 1rem;
+    color: #666;
+    font-weight: 600;
+}
+
+/* Slide 9: Formula */
+.formula-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+}
+
+.formula-box {
+    text-align: center;
+}
+
+.formula-equation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    font-size: 2rem;
+}
+
+.formula-term {
+    font-weight: 700;
+    color: #333;
+}
+
+.formula-equals {
+    font-size: 3rem;
+    color: #667eea;
+}
+
+.formula-fraction {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.formula-numerator,
+.formula-denominator {
+    font-weight: 600;
+    color: #333;
+    padding: 0.5rem 2rem;
+}
+
+.formula-line {
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    margin: 0.5rem 0;
+}
+
+.formula-insight {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding: 2rem;
+    border-radius: 20px;
+    text-align: left;
+}
+
+.formula-insight p {
+    font-size: 1.3rem;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.formula-insight ul {
+    list-style: none;
+    margin-left: 2rem;
+}
+
+.formula-insight li {
+    font-size: 1.2rem;
+    color: #555;
+    padding: 0.5rem 0;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.formula-insight li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: #667eea;
+}
+
+/* Slide 10: Closing */
+.closing-slide {
+    text-align: center;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+}
+
+.closing-ornament {
+    font-size: 3rem;
+    color: #764ba2;
+    margin: 1rem 0;
+}
+
+.closing-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    color: #333;
+    margin-bottom: 2rem;
+}
+
+.closing-message {
+    margin: 2rem 0;
+}
+
+.closing-text {
+    font-size: 1.6rem;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+}
+
+.closing-cta {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 2rem 3rem;
+    border-radius: 20px;
+    margin-top: 2rem;
+    display: inline-block;
+}
+
+.closing-cta h3 {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+/* Navigation */
+.navigation {
+    position: fixed;
+    bottom: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2rem;
+    pointer-events: none;
+    transform: translateY(50%);
+}
+
+.nav-btn {
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 2rem;
+    color: #667eea;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: all;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.nav-btn:hover {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    transform: scale(1.1);
+}
+
+.nav-btn:active {
+    transform: scale(0.95);
+}
+
+/* Progress Bar */
+.progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.3);
+    z-index: 1000;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    transition: width 0.3s ease;
+    width: 10%;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .main-title {
+        font-size: 4rem;
+    }
+
+    .slide-title {
+        font-size: 2.5rem;
+    }
+
+    .paradox-container,
+    .benefits-grid,
+    .wisdom-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .comparison-container {
+        grid-template-columns: 1fr;
+    }
+
+    .vs-divider {
+        text-align: center;
+        padding: 1rem 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .slide-content {
+        padding: 2rem;
+    }
+
+    .main-title {
+        font-size: 3rem;
+    }
+
+    .subtitle {
+        font-size: 1.4rem;
+    }
+
+    .slide-title {
+        font-size: 2rem;
+    }
+
+    .practice-item {
+        grid-template-columns: 1fr;
+    }
+
+    .formula-equation {
+        flex-direction: column;
+        font-size: 1.5rem;
+    }
+}
