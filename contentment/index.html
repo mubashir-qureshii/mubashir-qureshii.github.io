@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contentment — A Journey Within</title>
+
+  <!-- Reveal.js (local) -->
+  <link rel="stylesheet" href="assets/reset.css" />
+  <link rel="stylesheet" href="assets/reveal.css" />
+
+  <!-- Google Fonts (with system-font fallback) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* =============================================
+       ROOT DESIGN TOKENS
+    ============================================= */
+    :root {
+      --gold:      #d4a843;
+      --gold-lt:   #f0c96a;
+      --teal:      #0d7377;
+      --teal-lt:   #14a085;
+      --navy:      #0c1a2e;
+      --navy-mid:  #112244;
+      --navy-lt:   #1a3a5c;
+      --cream:     #fef9ef;
+      --sage:      #a8d8a8;
+      --sage-lt:   #d4edd4;
+      --warm-wh:   #fffdf7;
+      --text-dim:  rgba(255,255,255,0.75);
+      --text-muted:rgba(255,255,255,0.5);
+    }
+
+    /* =============================================
+       GLOBAL OVERRIDES
+    ============================================= */
+    .reveal {
+      font-family: 'Inter', sans-serif;
+    }
+    .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+      font-family: 'Playfair Display', serif;
+      text-transform: none;
+      letter-spacing: -0.5px;
+    }
+    .reveal .slides section {
+      text-align: left;
+      box-sizing: border-box;
+    }
+    .reveal .progress {
+      color: var(--gold);
+      height: 4px;
+    }
+    .reveal .controls {
+      color: var(--gold);
+    }
+
+    /* =============================================
+       SLIDE BACKGROUNDS — each section gets its own
+    ============================================= */
+
+    /* ---- 1. TITLE SLIDE ---- */
+    #slide-title {
+      background: radial-gradient(ellipse at 60% 40%, #1a3a5c 0%, #0c1a2e 55%, #06101e 100%);
+    }
+
+    /* ---- 2. OVERVIEW ---- */
+    #slide-overview {
+      background: linear-gradient(135deg, #0e2b1f 0%, #0d4a35 50%, #0a3b29 100%);
+    }
+
+    /* ---- 3. CONCEPT 1 ---- */
+    #slide-concept1 {
+      background: linear-gradient(150deg, #1a1a2e 0%, #2d1b4e 100%);
+    }
+
+    /* ---- 4. CONCEPT 2 ---- */
+    #slide-concept2 {
+      background: linear-gradient(135deg, #1c1c0e 0%, #2e2a08 50%, #1a1800 100%);
+    }
+
+    /* ---- 5. CONCEPT 3 ---- */
+    #slide-concept3 {
+      background: linear-gradient(150deg, #0c1e2e 0%, #0e2f44 50%, #0c1a2e 100%);
+    }
+
+    /* ---- 6. BENEFITS ---- */
+    #slide-benefits {
+      background: linear-gradient(135deg, #1a0e2e 0%, #2e1b4e 60%, #1a0e2e 100%);
+    }
+
+    /* ---- 7. TIPS 1 ---- */
+    #slide-tips1 {
+      background: linear-gradient(150deg, #0e1f1a 0%, #0d3328 60%, #0a1e14 100%);
+    }
+
+    /* ---- 8. TIPS 2 ---- */
+    #slide-tips2 {
+      background: linear-gradient(135deg, #1c130a 0%, #2e1e08 60%, #1a1200 100%);
+    }
+
+    /* ---- 9. TIPS 3 ---- */
+    #slide-tips3 {
+      background: linear-gradient(150deg, #0c1a2e 0%, #0e2540 60%, #091522 100%);
+    }
+
+    /* ---- 10. CONCLUSION ---- */
+    #slide-conclusion {
+      background: radial-gradient(ellipse at 40% 60%, #2d1b4e 0%, #1a0e2e 50%, #0c0818 100%);
+    }
+
+    /* ---- 11. THANK YOU ---- */
+    #slide-thankyou {
+      background: radial-gradient(ellipse at 50% 50%, #1a3a5c 0%, #0c1a2e 60%, #06101e 100%);
+    }
+
+    /* =============================================
+       SHARED LAYOUT UTILITIES
+    ============================================= */
+    .full-bleed {
+      width: 100%;
+      height: 100%;
+      padding: 60px 72px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 6px 18px;
+      border-radius: 50px;
+      font-size: 0.72em;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .pill-gold   { background: rgba(212,168,67,0.18); color: var(--gold); border: 1px solid rgba(212,168,67,0.35); }
+    .pill-teal   { background: rgba(13,115,119,0.25); color: #4ecdc4;     border: 1px solid rgba(78,205,196,0.4); }
+    .pill-sage   { background: rgba(168,216,168,0.18); color: var(--sage); border: 1px solid rgba(168,216,168,0.4); }
+    .pill-purple { background: rgba(150,80,220,0.18); color: #c084fc;     border: 1px solid rgba(192,132,252,0.4); }
+
+    .headline-xl {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.4em;
+      font-weight: 900;
+      line-height: 1.05;
+      margin: 0 0 18px;
+    }
+    .headline-lg {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.6em;
+      font-weight: 700;
+      line-height: 1.1;
+      margin: 0 0 16px;
+    }
+    .headline-md {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.9em;
+      font-weight: 700;
+      line-height: 1.2;
+      margin: 0 0 14px;
+    }
+
+    .subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.45em;
+      font-style: italic;
+      color: var(--text-dim);
+      margin-bottom: 10px;
+    }
+
+    .body-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95em;
+      line-height: 1.7;
+      color: var(--text-dim);
+    }
+
+    .gold-text  { color: var(--gold); }
+    .teal-text  { color: #4ecdc4; }
+    .sage-text  { color: var(--sage); }
+    .cream-text { color: var(--cream); }
+    .white-text { color: #ffffff; }
+
+    .divider {
+      width: 60px;
+      height: 3px;
+      border-radius: 2px;
+      margin: 0 0 24px;
+    }
+    .divider-gold   { background: linear-gradient(90deg, var(--gold), transparent); }
+    .divider-teal   { background: linear-gradient(90deg, #4ecdc4, transparent); }
+    .divider-sage   { background: linear-gradient(90deg, var(--sage), transparent); }
+    .divider-purple { background: linear-gradient(90deg, #c084fc, transparent); }
+
+    /* =============================================
+       GRID LAYOUTS
+    ============================================= */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-top: 10px;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+      margin-top: 10px;
+    }
+
+    /* =============================================
+       CARD COMPONENTS
+    ============================================= */
+    .card {
+      border-radius: 16px;
+      padding: 28px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .card-gold {
+      background: rgba(212,168,67,0.08);
+      border: 1px solid rgba(212,168,67,0.22);
+    }
+    .card-teal {
+      background: rgba(13,115,119,0.18);
+      border: 1px solid rgba(78,205,196,0.25);
+    }
+    .card-purple {
+      background: rgba(120,60,200,0.15);
+      border: 1px solid rgba(192,132,252,0.25);
+    }
+    .card-sage {
+      background: rgba(168,216,168,0.10);
+      border: 1px solid rgba(168,216,168,0.25);
+    }
+    .card-dark {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.10);
+    }
+    .card-glow-gold {
+      box-shadow: 0 0 30px rgba(212,168,67,0.12);
+    }
+    .card-glow-teal {
+      box-shadow: 0 0 30px rgba(78,205,196,0.12);
+    }
+    .card .card-icon {
+      font-size: 2em;
+      margin-bottom: 12px;
+      display: block;
+    }
+    .card .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1em;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .card .card-body {
+      font-size: 0.82em;
+      line-height: 1.6;
+      color: var(--text-dim);
+    }
+
+    /* =============================================
+       QUOTE BLOCK
+    ============================================= */
+    .quote-block {
+      border-left: 4px solid var(--gold);
+      padding: 16px 24px;
+      background: rgba(212,168,67,0.06);
+      border-radius: 0 12px 12px 0;
+      margin: 20px 0;
+    }
+    .quote-block p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3em;
+      font-style: italic;
+      color: var(--cream);
+      margin: 0 0 8px;
+    }
+    .quote-block cite {
+      font-size: 0.78em;
+      color: var(--gold);
+      letter-spacing: 1px;
+    }
+
+    /* =============================================
+       NUMBERED LIST
+    ============================================= */
+    .step-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .step-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+    .step-num {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85em;
+    }
+    .step-num-gold   { background: rgba(212,168,67,0.2); color: var(--gold); border: 1px solid rgba(212,168,67,0.4); }
+    .step-num-teal   { background: rgba(78,205,196,0.15); color: #4ecdc4;    border: 1px solid rgba(78,205,196,0.4); }
+    .step-num-sage   { background: rgba(168,216,168,0.15); color: var(--sage); border: 1px solid rgba(168,216,168,0.4); }
+    .step-text strong { color: #fff; font-size: 0.9em; display: block; margin-bottom: 2px; }
+    .step-text span   { color: var(--text-dim); font-size: 0.8em; line-height: 1.5; }
+
+    /* =============================================
+       TAG LIST
+    ============================================= */
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .tag {
+      padding: 7px 16px;
+      border-radius: 50px;
+      font-size: 0.78em;
+      font-weight: 500;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: var(--text-dim);
+    }
+
+    /* =============================================
+       STAT BLOCKS
+    ============================================= */
+    .stat-row {
+      display: flex;
+      gap: 24px;
+      margin-top: 22px;
+    }
+    .stat-box {
+      flex: 1;
+      border-radius: 14px;
+      padding: 22px 18px;
+      text-align: center;
+    }
+    .stat-box .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2em;
+      font-weight: 900;
+      line-height: 1;
+      display: block;
+    }
+    .stat-box .stat-label {
+      font-size: 0.72em;
+      color: var(--text-dim);
+      margin-top: 4px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* =============================================
+       SVG DECORATIVE ELEMENTS
+    ============================================= */
+    .bg-circle {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .deco-wrap {
+      position: absolute;
+      top: 0; right: 0; bottom: 0; left: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    /* =============================================
+       TIMELINE (for tips slides)
+    ============================================= */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .tl-item {
+      display: flex;
+      gap: 20px;
+      position: relative;
+    }
+    .tl-item:not(:last-child)::before {
+      content: '';
+      position: absolute;
+      left: 18px;
+      top: 38px;
+      bottom: -8px;
+      width: 2px;
+      background: rgba(255,255,255,0.1);
+    }
+    .tl-dot {
+      flex-shrink: 0;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1em;
+      margin-top: 2px;
+    }
+    .tl-dot-gold   { background: rgba(212,168,67,0.2);  border: 2px solid var(--gold); }
+    .tl-dot-teal   { background: rgba(78,205,196,0.15); border: 2px solid #4ecdc4; }
+    .tl-dot-sage   { background: rgba(168,216,168,0.15);border: 2px solid var(--sage); }
+    .tl-content {
+      padding-bottom: 24px;
+    }
+    .tl-content strong { color: #fff; font-size: 0.9em; display: block; margin-bottom: 4px; }
+    .tl-content p      { color: var(--text-dim); font-size: 0.8em; line-height: 1.55; margin: 0; }
+
+    /* =============================================
+       TITLE SLIDE SPECIFICS
+    ============================================= */
+    .title-main {
+      font-family: 'Playfair Display', serif;
+      font-size: 5.5em;
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: -2px;
+      background: linear-gradient(135deg, #ffffff 0%, var(--gold-lt) 50%, var(--gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin: 0 0 10px;
+    }
+    .title-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6em;
+      font-style: italic;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 36px;
+    }
+    .title-meta {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .title-meta-line {
+      width: 40px;
+      height: 2px;
+      background: var(--gold);
+      opacity: 0.6;
+    }
+    .title-meta span {
+      font-size: 0.72em;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+    }
+
+    /* =============================================
+       CONCLUSION / CTA
+    ============================================= */
+    .cta-box {
+      background: linear-gradient(135deg, rgba(212,168,67,0.12), rgba(78,205,196,0.08));
+      border: 1px solid rgba(212,168,67,0.3);
+      border-radius: 20px;
+      padding: 32px 36px;
+      text-align: center;
+      margin-top: 24px;
+    }
+    .cta-box p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3em;
+      font-style: italic;
+      color: var(--cream);
+      margin: 0 0 16px;
+    }
+    .cta-btn {
+      display: inline-block;
+      padding: 12px 32px;
+      border-radius: 50px;
+      background: linear-gradient(135deg, var(--gold), #b8922e);
+      color: #1a0e00;
+      font-weight: 700;
+      font-size: 0.82em;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    /* =============================================
+       THANK YOU SLIDE
+    ============================================= */
+    .ty-central {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      text-align: center;
+    }
+    .ty-emblem {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(212,168,67,0.25), rgba(78,205,196,0.15));
+      border: 2px solid rgba(212,168,67,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.6em;
+      margin-bottom: 28px;
+    }
+
+    /* =============================================
+       HIGHLIGHT ROW (benefits)
+    ============================================= */
+    .hl-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 8px;
+    }
+    .hl-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px 18px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .hl-icon {
+      font-size: 1.4em;
+      flex-shrink: 0;
+      line-height: 1;
+      margin-top: 2px;
+    }
+    .hl-item strong { color: #fff; font-size: 0.85em; display: block; margin-bottom: 3px; }
+    .hl-item span   { color: var(--text-dim); font-size: 0.78em; line-height: 1.5; }
+
+    /* =============================================
+       RESPONSIVE SCALE HELPERS
+    ============================================= */
+    .reveal .slides {
+      font-size: 18px;
+    }
+    @media (max-width: 768px) {
+      .grid-2 { grid-template-columns: 1fr; }
+      .grid-3 { grid-template-columns: 1fr; }
+      .hl-row { grid-template-columns: 1fr; }
+      .full-bleed { padding: 36px 30px; }
+      .title-main { font-size: 3.5em; }
+    }
+  </style>
+</head>
+<body>
+<div class="reveal">
+  <div class="slides">
+
+    <!-- ============================================================
+         SLIDE 1 — TITLE
+    ============================================================ -->
+    <section id="slide-title" data-transition="fade" data-transition-speed="slow">
+      <div class="full-bleed" style="justify-content: flex-end; padding-bottom: 80px;">
+
+        <!-- Decorative background circles -->
+        <div class="deco-wrap">
+          <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="rg1" cx="80%" cy="20%" r="50%">
+                <stop offset="0%" stop-color="#d4a843" stop-opacity="0.12"/>
+                <stop offset="100%" stop-color="#d4a843" stop-opacity="0"/>
+              </radialGradient>
+              <radialGradient id="rg2" cx="10%" cy="85%" r="40%">
+                <stop offset="0%" stop-color="#4ecdc4" stop-opacity="0.10"/>
+                <stop offset="100%" stop-color="#4ecdc4" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#rg1)"/>
+            <rect width="100%" height="100%" fill="url(#rg2)"/>
+            <!-- Geometric dots grid -->
+            <g opacity="0.12">
+              <circle cx="82%" cy="15%" r="180" fill="none" stroke="#d4a843" stroke-width="1"/>
+              <circle cx="82%" cy="15%" r="280" fill="none" stroke="#d4a843" stroke-width="0.5"/>
+              <circle cx="15%" cy="80%" r="120" fill="none" stroke="#4ecdc4" stroke-width="1"/>
+            </g>
+            <!-- Small decorative dots -->
+            <g fill="#d4a843" opacity="0.3">
+              <circle cx="72%" cy="10%" r="3"/>
+              <circle cx="76%" cy="14%" r="2"/>
+              <circle cx="68%" cy="18%" r="2.5"/>
+              <circle cx="78%" cy="22%" r="1.5"/>
+              <circle cx="65%" cy="12%" r="2"/>
+              <circle cx="80%" cy="8%"  r="1.5"/>
+            </g>
+          </svg>
+        </div>
+
+        <!-- Slide number pill -->
+        <div class="pill pill-gold" style="margin-bottom: 28px;">Presentation</div>
+
+        <!-- Main heading -->
+        <h1 class="title-main">CONTENT<br/>MENT</h1>
+        <p class="title-sub">The Art of Finding Peace Within</p>
+
+        <!-- Divider -->
+        <div class="title-meta">
+          <div class="title-meta-line"></div>
+          <span>A Journey of the Soul</span>
+          <div class="title-meta-line"></div>
+        </div>
+      </div>
+
+      <!-- Speaker notes -->
+      <aside class="notes">
+        Welcome everyone. Today we will explore Contentment — one of the most profound human virtues. 
+        This presentation will guide us through the meaning, science, and practice of contentment.
+      </aside>
+    </section>
+
+
+    <!-- ============================================================
+         SLIDE 2 — OVERVIEW
+    ============================================================ -->
+    <section id="slide-overview" data-transition="slide" data-transition-speed="default">
+      <div class="full-bleed">
+
+        <div class="deco-wrap">
+          <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="rg-ov" cx="90%" cy="90%" r="55%">
+                <stop offset="0%" stop-color="#14a085" stop-opacity="0.15"/>
+                <stop offset="100%" stop-color="#14a085" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#rg-ov)"/>
+            <circle cx="90%" cy="90%" r="200" fill="none" stroke="#14a085" stroke-width="0.8" opacity="0.2"/>
+            <circle cx="90%" cy="90%" r="320" fill="none" stroke="#14a085" stroke-width="0.4" opacity="0.12"/>
+          </svg>
+        </div>
+
+        <div class="pill pill-teal">Overview</div>
+        <h2 class="headline-lg white-text">What is <span class="teal-text">Contentment</span>?</h2>
+        <div class="divider divider-teal"></div>
+
+        <div class="grid-2" style="gap: 32px; align-items: start;">
+          <div>
+            <div class="quote-block" style="border-left-color: #4ecdc4; background: rgba(78,205,196,0.06);">
+              <p style="color: #e0f5f4;">"Contentment is not the fulfillment of what you want, but the realization of how much you already have."</p>
+              <cite style="color: #4ecdc4;">— Ancient Wisdom</cite>
+            </div>
+            <p class="body-text" style="margin-top: 16px;">
+              Contentment (<em style="color: #4ecdc4;">qana'ah</em> in Arabic, <em style="color: #4ecdc4;">santosha</em> in Sanskrit) is 
+              a state of peaceful satisfaction — an inner stillness that transcends external circumstances.
+            </p>
+          </div>
+
+          <div>
+            <ul class="step-list">
+              <li>
+                <div class="step-num step-num-teal">01</div>
+                <div class="step-text">
+                  <strong>Not Passivity</strong>
+                  <span>Contentment coexists with ambition and growth. It's about appreciating now.</span>
+                </div>
+              </li>
+              <li>
+                <div class="step-num step-num-teal">02</div>
+                <div class="step-text">
+                  <strong>Not Resignation</strong>
+                  <span>It is an active choice — a daily practice of gratitude and awareness.</span>
+                </div>
+              </li>
+              <li>
+                <div class="step-num step-num-teal">03</div>
+                <div class="step-text">
+                  <strong>A State of Being</strong>
+                  <span>True contentment is independent of wealth, status, or circumstances.</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <aside class="notes">Explain the difference between contentment and complacency. Contentment is choosing peace, not giving up on life.</aside>
+    </section>
+
+
+    <!-- ============================================================
+         SLIDE 3 — KEY CONCEPT 1: Philosophy
+    ============================================================ -->
+    <section id="slide-concept1" data-transition="convex">
+      <div class="full-bleed">
+
+        <div class="deco-wrap">
+          <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="rg-c1" cx="85%" cy="15%" r="45%">
+                <stop offset="0%" stop-color="#c084fc" stop-opacity="0.15"/>
+                <stop offset="100%" stop-color="#c084fc" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#rg-c1)"/>
+            <circle cx="85%" cy="15%" r="160" fill="none" stroke="#c084fc" stroke-width="0.8" opacity="0.2"/>
+            <!-- Diamond shape decoration -->
+            <polygon points="1088,36 1178,154 1088,252 998,154" fill="none" stroke="#c084fc" stroke-width="0.8" opacity="0.25"/>
+          </svg>
+        </div>
+
+        <div class="pill pill-purple">Key Concept 1</div>
+        <h2 class="headline-lg white-text">The <span style="color: #c084fc;">Philosophy</span> of Contentment</h2>
+        <div class="divider divider-purple"></div>
+
+        <div class="grid-3" style="margin-top: 14px;">
+          <div class="card card-purple card-glow-teal">
+            <span class="card-icon">🏛️</span>
+            <div class="card-title" style="color: #c084fc;">Stoicism</div>
+            <div class="card-body">The Stoics taught <em>eudaimonia</em> — that fulfillment comes from virtue, not possessions. Focus only on what lies within your control.</div>
+          </div>
+          <div class="card card-purple">
+            <span class="card-icon">☯️</span>
+            <div class="card-title" style="color: #c084fc;">Taoism</div>
+            <div class="card-body">The Tao teaches <em>wu wei</em> — effortless action. Align with the flow of life and release the struggle for more.</div>
+          </div>
+          <div class="card card-purple">
+            <span class="card-icon">🕌</span>
+            <div class="card-title" style="color: #c084fc;">Islamic Wisdom</div>
+            <div class="card-body"><em>Qana'ah</em> is a treasured virtue — being satisfied with what Allah has decreed while still striving with excellence and gratitude.</div>
+          </div>
+        </div>
+
+        <div class="tag-row" style="margin-top: 20px;">
+          <span class="tag">Inner Peace</span>
+          <span class="tag">Virtue Ethics</span>
+          <span class="tag">Acceptance</span>
+          <span class="tag">Mindful Living</span>
+          <span class="tag">Gratitude</span>
+          <span class="tag">Present Moment</span>
+        </div>
+      </div>
+      <aside class="notes">Across all major philosophical and religious traditions, contentment appears as a central virtue. This isn't coincidence — it reflects deep human wisdom.</aside>
+    </section>
+
+
+    <!-- ============================================================
+         SLIDE 4 — KEY CONCEPT 2: Contentment vs Desire
+    ============================================================ -->
+    <section id="slide-concept2" data-transition="slide">
+      <div class="full-bleed">
+
+        <div class="deco-wrap">
+          <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="rg-c2" cx="20%" cy="80%" r="50%">
+                <stop offset="0%" stop-color="#d4a843" stop-opacity="0.18"/>
+                <stop offset="100%" stop-color="#d4a843" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#rg-c2)"/>
+            <circle cx="20%" cy="80%" r="180" fill="none" stroke="#d4a843" stroke-width="0.8" opacity="0.18"/>
+          </svg>
+        </div>
+
+        <div class="pill pill-gold">Key Concept 2</div>
+        <h2 class="headline-lg white-text">The <span class="gold-text">Desire Trap</span></h2>
+        <div class="divider divider-gold"></div>
+
+        <div class="grid-2" style="gap: 28px; align-items: start; margin-top: 10px;">
+
+          <!-- Left: The hedonic treadmill -->
+          <div>
+            <div class="card card-dark" style="border-color: rgba(212,168,67,0.2); margin-bottom: 16px;">
+              <div class="card-title" style="color: var(--gold); font-size: 0.95em;">🔄 The Hedonic Treadmill</div>
+              <div class="card-body">We acquire, we adapt, we desire more. Research shows humans rapidly return to their baseline happiness level after gains — perpetually chasing the next thing.</div>
+            </div>
+            <div class="card card-dark" style="border-color: rgba(212,168,67,0.2);">
+              <div class="card-title" style="color: var(--gold); font-size: 0.95em;">⚡ Comparison Culture</div>
+              <div class="card-body">Social comparison is the thief of joy. We measure our inside life by others' outside — a recipe for perpetual discontentment.</div>
+            </div>
+          </div>
+
+          <!-- Right: The alternative -->
+          <div>
+            <p class="body-text" style="font-size: 0.88em; margin-bottom: 18px; color: rgba(255,255,255,0.6);">The antidote is not acquiring less — it's <span class="gold-text" style="-webkit-text-fill-color: var(--gold);">perceiving differently</span>.</p>
+
+            <ul class="step-list">
+              <li>
+                <div class="step-num step-num-gold">✦</div>
+                <div class="step-text">
+                  <strong>Shift from "wanting" to "having"</strong>
+                  <span>Reframe your internal narrative from scarcity to abundance.</span>
+                </div>
+              </li>
+              <li>
+                <div class="step-num step-num-gold">✦</div>
+                <div class="step-text">
+                  <strong>Detach worth from possessions</strong>
+                  <span>Your value as a person is not tied to what you own or achieve.</span>
+                </div>
+              </li>
+              <li>
+                <div class="step-num step-num-gold">✦</div>
+                <div class="step-text">
+                  <strong>Celebrate the ordinary</strong>
+                  <span>The extraordinary is hidden inside every ordinary moment.</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <aside class="notes">The hedonic treadmill is a powerful psychological concept. We all do it — this slide is meant to create self-awareness, not judgment.</aside>
+    </section>
+
+
+    <!-- ============================================================
+         SLIDE 5 — KEY CONCEPT 3: Inner Peace
+    ============================================================ -->
+    <section id="slide-concept3" data-transition="convex">
+      <div class="full-bleed">
+
+        <div class="deco-wrap">
+          <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="rg-c3a" cx="75%" cy="25%" r="40%">
+                <stop offset="0%" stop-color="#4ecdc4" stop-opacity="0.12"/>
+                <stop offset="100%" stop-color="#4ecdc4" stop-opacity="0"/>
+              </radialGradient>
+              <radialGradient id="rg-c3b" cx="25%" cy="75%" r="40%">
+                <stop offset="0%" stop-color="#d4a843" stop-opacity="0.10"/>
+                <stop offset="100%" stop-color="#d4a843" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#rg-c3a)"/>
+            <rect width="100%" height="100%" fill="url(#rg-c3b)"/>
+            <!-- Mandala-like circles -->
+            <circle cx="50%" cy="50%" r="260" fill="none" stroke="#4ecdc4" stroke-width="0.5" opacity="0.08"/>
+            <circle cx="50%" cy="50%" r="320" fill="none" stroke="#4ecdc4" stroke-width="0.5" opacity="0.05"/>
+          </svg>
+        </div>
+
+        <div class="pill pill-teal">Key Concept 3</div>
+        <h2 class="headline-lg white-text">Contentment &amp; <span class="teal-text">Inner Peace</span></h2>
+        <div class="divider divider-teal"></div>
+
+        <div class="grid-2" style="gap: 32px; align-items: center;">
+          <div>
+            <p class="body-text" style="font-size: 0.9em; margin-bottom: 20px; color: rgba(255,255,255,0.7);">
+              Contentment is the <span class="teal-text">foundation</span> of inner peace. When the heart is satisfied, 
+              the mind becomes still — free from the noise of constant wanting and comparing.
+            </p>
+
+            <div class="timeline">
+              <div class="tl-item">
+                <div class="tl-dot tl-dot-teal">🌱</div>
+                <div class="tl-content">
+                  <strong>Acceptance</strong>
+                  <p>Embrace what is — past, present, and the limits of control.</p>
+                </div>
+              </div>
+              <div class="tl-item">
+                <div class="tl-dot tl-dot-teal">💧</div>
+                <div class="tl-content">
+                  <strong>Letting Go</strong>
+                  <p>Release attachment to outcomes. Trust the process of life.</p>
+                </div>
+              </div>
+              <div class="tl-item" style="margin-bottom: 0;">
+                <div class="tl-dot tl-dot-teal">✨</div>
+                <div class="tl-content">
+                  <strong>Presence</strong>
+                  <p>Inhabit the now fully. Peace lives only in the present moment.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: central visual concept -->
+          <div style="display: flex; flex-direction: column; gap: 14px;">
+            <div class="card card-teal card-glow-teal" style="text-align: center; padding: 24px;">
+              <div style="font-size: 2.8em; margin-bottom: 10px;">🌊</div>
+              <div class="card-title" style="color: #4ecdc4; text-align: center; font-size: 1em;">Stillness Over Noise</div>
+              <div class="card-body" style="text-align: center; font-size: 0.8em;">Like calm waters reflect the sky perfectly, a content mind reflects clarity and wisdom.</div>
+            </div>
+            <div class="stat-row" style="margin-top: 0;">
+              <div class="stat-box" style="background: rgba(78,205,196,0.08); border: 1px solid rgba(78,205,196,0.2);">
+                <span class="stat-num teal-text">73%</span>
+                <span class="stat-label">report better sleep with contentment practices</span>
+              </div>
+              <div class="stat-box" style="background: rgba(212,168,67,0.08); border: 1px solid rgba(212,168,67,0.2);">
+                <span class="stat-num gold-text">2×</span>
+                <span class="stat-label">more resilient in the face of adversity</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <aside class="notes">The neuroscience supports this. Contentment and gratitude activate the prefrontal cortex and reduce amygdala reactivity — the biological basis of peace of mind.</aside>
+    </section>
+
+
+    <!-- ============================================================
+         SLIDE 6 — BENEFITS
+    ============================================================ -->
+    <section id="slide-benefits" data-transition="fade">
+      <div class="full-bleed">
+
+        <div class="deco-wrap">
+          <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="rg-ben" cx="90%" cy="10%" r="50%">
+                <stop offset="0%" stop-color="#c084fc" stop-opacity="0.14"/>
+                <stop offset="100%" stop-color="#c084fc" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#rg-ben)"/>
+            <circle cx="90%" cy="10%" r="200" fill="none" stroke="#c084fc" stroke-width="0.8" opacity="0.15"/>
+          </svg>
+        </div>
+
+        <div class="pill pill-purple">Benefits</div>
+        <h2 class="headline-lg white-text">Why Contentment <span style="color: #c084fc;">Matters</span></h2>
+        <div class="divider divider-purple"></div>
+
+        <div class="hl-row" style="margin-top: 16px;">
+          <div class="hl-item">
+            <span class="hl-icon">🧠</span>
+            <div>
+              <strong>Mental Health</strong>
+              <span>Reduces anxiety, depression, and rumination. Creates psychological safety and resilience.</span>
+            </div>
+          </div>
+          <div class="hl-item">
+            <span class="hl-icon">❤️</span>
+            <div>
+              <strong>Physical Wellbeing</strong>
+              <span>Lower cortisol levels, better cardiovascular health, stronger immune response.</span>
+            </div>
+          </div>
+          <div class="hl-item">
+            <span class="hl-icon">🤝</span>
+            <div>
+              <strong>Stronger Relationships</strong>
+              <span>Content people give more freely, compare less, and connect more authentically.</span>
+            </div>
+          </div>
+          <div class="hl-item">
+            <span class="hl-icon">🎯</span>
+            <div>
+              <strong>True Productivity</strong>
+              <span>Contentment unlocks flow states — you act from purpose, not desperation.</span>
+            </div>
+          </div>
+          <div class="hl-item">
+            <span class="hl-icon">🌿</span>
+            <div>
+              <strong>Sustainable Living</strong>
+              <span>Content people consume mindfully, reducing waste and environmental impact.</span>
+            </div>
+          </div>
+          <div class="hl-item">
+            <span class="hl-icon">✨</span>
+            <div>
+              <strong>Spiritual Growth</strong>
+              <span>Creates space for gratitude, prayer, and deep connection with meaning and purpose.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <aside class="notes">Research by Dr. Sonja Lyubomirsky and others confirms these benefits. The science of happiness is clear: contentment is the root of flourishing.</aside>
+    </section>
+
+
+    <!-- ============================================================
+         SLIDE 7 — TIPS 1: Mindfulness & Gratitude
+    ============================================================ -->
+    <section id="slide-tips1" data-transition="slide">
+      <div class="full-bleed">
+
+        <div class="deco-wrap">
+          <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="rg-t1" cx="15%" cy="85%" r="45%">
+                <stop offset="0%" stop-color="#a8d8a8" stop-opacity="0.14"/>
+                <stop offset="100%" stop-color="#a8d8a8" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#rg-t1)"/>
+          </svg>
+        </div>
+
+        <div class="pill pill-sage">Practical Tips · 1 of 3</div>
+        <h2 class="headline-lg white-text">Mindfulness &amp; <span class="sage-text">Gratitude</span></h2>
+        <div class="divider divider-sage"></div>
+
+        <div class="grid-2" style="gap: 28px; align-items: start; margin-top: 8px;">
+          <div>
+            <div class="card card-sage" style="margin-bottom: 16px;">
+              <div class="card-title" style="color: var(--sage);">🧘 Daily Mindfulness Practice</div>
+              <div class="card-body">
+                Spend 10–15 minutes in silent awareness each morning. Notice thoughts without judgment. 
+                Breathe consciously. This trains the brain to rest in the present.
+              </div>
+            </div>
+            <div class="card card-sage">
+              <div class="card-title" style="color: var(--sage);">📓 Gratitude Journaling</div>
+              <div class="card-body">
+                Each evening, write 3 specific things you are grateful for. Be specific — not "family" 
+                but "my daughter's laugh today." Specificity deepens the feeling.
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <p class="body-text" style="font-size: 0.82em; color: rgba(255,255,255,0.5); margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1.5px;">Daily Ritual Blueprint</p>
+            <ul class="step-list">
+              <li>
+                <div class="step-num step-num-sage">🌅</div>
+                <div class="step-text">
+                  <strong>Morning: Intention Setting</strong>
+                  <span>Begin with "Today I choose contentment." Say it aloud. Mean it.</span>
+                </div>
+              </li>
+              <li>
+                <div class="step-num step-num-sage">☀️</div>
+                <div class="step-text">
+                  <strong>Midday: Pause &amp; Notice</strong>
+                  <span>Take one deep breath. Notice 5 things around you. Return to now.</span>
+                </div>
+              </li>
+              <li>
+                <div class="step-num step-num-sage">🌙</div>
+                <div class="step-text">
+                  <strong>Evening: Reflection</strong>
+                  <span>Review the day with compassion. Celebrate small wins. Let go of the rest.</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <aside class="notes">The 21-day gratitude challenge is a proven method. Encourage participants to start tonight with just one entry.</aside>
+    </section>
+
+
+    <!-- ============================================================
+         SLIDE 8 — TIPS 2: Simplicity & Detachment
+    ============================================================ -->
+    <section id="slide-tips2" data-transition="convex">
+      <div class="full-bleed">
+
+        <div class="deco-wrap">
+          <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="rg-t2" cx="80%" cy="20%" r="45%">
+                <stop offset="0%" stop-color="#d4a843" stop-opacity="0.14"/>
+                <stop offset="100%" stop-color="#d4a843" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#rg-t2)"/>
+            <circle cx="80%" cy="20%" r="150" fill="none" stroke="#d4a843" stroke-width="1" opacity="0.15"/>
+          </svg>
+        </div>
+
+        <div class="pill pill-gold">Practical Tips · 2 of 3</div>
+        <h2 class="headline-lg white-text">Simplicity &amp; <span class="gold-text">Detachment</span></h2>
+        <div class="divider divider-gold"></div>
+
+        <div class="grid-3" style="margin-top: 14px;">
+          <div class="card card-gold">
+            <span class="card-icon">🧹</span>
+            <div class="card-title" style="color: var(--gold);">Declutter Your Space</div>
+            <div class="card-body">Your physical environment shapes your mental state. Remove what no longer serves you. Simplicity in space = clarity in mind.</div>
+          </div>
+          <div class="card card-gold">
+            <span class="card-icon">📵</span>
+            <div class="card-title" style="color: var(--gold);">Digital Detox</div>
+            <div class="card-body">Social media fuels comparison. Set intentional screen-free hours daily. Protect your mental diet as fiercely as your food diet.</div>
+          </div>
+          <div class="card card-gold">
+            <span class="card-icon">🎯</span>
+            <div class="card-title" style="color: var(--gold);">Enough Is Enough</div>
+            <div class="card-body">Define what "enough" looks like for you — in work, possessions, achievement. Having a threshold prevents endless striving.</div>
+          </div>
+        </div>
+
+        <div class="quote-block" style="margin-top: 22px; padding: 14px 20px;">
+          <p style="font-size: 1.05em;">"The secret of happiness is not found in seeking more, but in developing the capacity to enjoy less."</p>
+          <cite>— Socrates</cite>
+        </div>
+      </div>
+      <aside class="notes">Minimalism isn't about deprivation — it's about intentionality. Ask participants: what is one thing they could release today?</aside>
+    </section>
+
+
+    <!-- ============================================================
+         SLIDE 9 — TIPS 3: Community & Purpose
+    ============================================================ -->
+    <section id="slide-tips3" data-transition="slide">
+      <div class="full-bleed">
+
+        <div class="deco-wrap">
+          <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="rg-t3" cx="50%" cy="0%" r="60%">
+                <stop offset="0%" stop-color="#4ecdc4" stop-opacity="0.12"/>
+                <stop offset="100%" stop-color="#4ecdc4" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#rg-t3)"/>
+          </svg>
+        </div>
+
+        <div class="pill pill-teal">Practical Tips · 3 of 3</div>
+        <h2 class="headline-lg white-text">Community &amp; <span class="teal-text">Purpose</span></h2>
+        <div class="divider divider-teal"></div>
+
+        <div class="grid-2" style="gap: 32px; align-items: start; margin-top: 8px;">
+          <div>
+            <ul class="step-list">
+              <li>
+                <div class="step-num step-num-teal">🤲</div>
+                <div class="step-text">
+                  <strong>Give Generously</strong>
+                  <span>Generosity shifts focus from self to others. Giving produces the "helper's high" — a neurochemical boost of wellbeing.</span>
+                </div>
+              </li>
+              <li>
+                <div class="step-num step-num-teal">🌍</div>
+                <div class="step-text">
+                  <strong>Serve a Greater Cause</strong>
+                  <span>Connect your daily actions to a purpose larger than yourself. Meaning transforms ordinary tasks into sacred ones.</span>
+                </div>
+              </li>
+              <li>
+                <div class="step-num step-num-teal">👥</div>
+                <div class="step-text">
+                  <strong>Nurture Deep Connections</strong>
+                  <span>Quality over quantity in relationships. Invest in relationships that challenge and uplift you.</span>
+                </div>
+              </li>
+              <li>
+                <div class="step-num step-num-teal">📖</div>
+                <div class="step-text">
+                  <strong>Continuous Inner Growth</strong>
+                  <span>Read, reflect, and seek wisdom. A growing mind is a content mind.</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <div class="card card-teal card-glow-teal" style="padding: 28px; text-align: center; margin-bottom: 16px;">
+              <div style="font-size: 2.5em; margin-bottom: 12px;">🌻</div>
+              <div class="card-title" style="color: #4ecdc4; text-align: center;">The Contentment Cycle</div>
+              <div class="card-body" style="text-align: center; font-size: 0.82em; margin-top: 8px;">Gratitude → Generosity → Connection → Purpose → Gratitude</div>
+            </div>
+            <div class="card card-dark" style="border-color: rgba(78,205,196,0.2);">
+              <div class="card-body" style="font-size: 0.82em;">
+                Studies show people with strong community ties and sense of purpose live an average of 
+                <span class="teal-text" style="font-weight: 700;">7 years longer</span> and report 
+                significantly higher life satisfaction.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <aside class="notes">Viktor Frankl's logotherapy shows that meaning-making is the deepest human need. Help participants find their "why."</aside>
+    </section>
+
+
+    <!-- ============================================================
+         SLIDE 10 — CONCLUSION
+    ============================================================ -->
+    <section id="slide-conclusion" data-transition="fade" data-transition-speed="slow">
+      <div class="full-bleed">
+
+        <div class="deco-wrap">
+          <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="rg-con" cx="50%" cy="50%" r="60%">
+                <stop offset="0%" stop-color="#c084fc" stop-opacity="0.12"/>
+                <stop offset="50%" stop-color="#d4a843" stop-opacity="0.08"/>
+                <stop offset="100%" stop-color="#4ecdc4" stop-opacity="0.06"/>
+              </radialGradient>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#rg-con)"/>
+            <circle cx="50%" cy="50%" r="240" fill="none" stroke="#c084fc" stroke-width="0.5" opacity="0.12"/>
+            <circle cx="50%" cy="50%" r="310" fill="none" stroke="#d4a843" stroke-width="0.5" opacity="0.08"/>
+          </svg>
+        </div>
+
+        <div class="pill pill-purple">Conclusion</div>
+        <h2 class="headline-lg white-text">The <span style="color: #c084fc;">Journey</span> Within</h2>
+        <div class="divider divider-purple"></div>
+
+        <div class="grid-2" style="gap: 32px; align-items: start; margin-top: 8px;">
+          <div>
+            <p class="body-text" style="font-size: 0.92em; color: rgba(255,255,255,0.75); margin-bottom: 20px; line-height: 1.8;">
+              Contentment is not a destination — it is a <em style="color: #c084fc;">way of traveling</em>. 
+              It asks nothing of the world and everything of the self. It is quietly revolutionary — 
+              choosing joy in the ordinary, peace amid uncertainty, and enough in what already is.
+            </p>
+
+            <ul class="step-list">
+              <li>
+                <div class="step-num step-num-gold">✓</div>
+                <div class="step-text">
+                  <strong>Contentment is a practice, not a feeling</strong>
+                  <span>Show up for it daily, especially on hard days.</span>
+                </div>
+              </li>
+              <li>
+                <div class="step-num step-num-gold">✓</div>
+                <div class="step-text">
+                  <strong>You already have enough</strong>
+                  <span>The world tells you otherwise. Don't believe it.</span>
+                </div>
+              </li>
+              <li>
+                <div class="step-num step-num-gold">✓</div>
+                <div class="step-text">
+                  <strong>Peace begins inside</strong>
+                  <span>No circumstance can give it to you; none can take it away.</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <div class="cta-box">
+              <p>"Be content with what you have; rejoice in the way things are. When you realize there is nothing lacking, the whole world belongs to you."</p>
+              <div style="font-size: 0.72em; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 20px;">— Lao Tzu</div>
+              <div style="font-size: 0.82em; color: rgba(255,255,255,0.6); margin-bottom: 0;">
+                Start today. Choose one practice. <br/>
+                <span style="color: var(--gold); font-weight: 600;">Let contentment begin now.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <aside class="notes">End with a moment of stillness. Invite participants to close their eyes and take one breath of gratitude before moving on.</aside>
+    </section>
+
+
+    <!-- ============================================================
+         SLIDE 11 — THANK YOU
+    ============================================================ -->
+    <section id="slide-thankyou" data-transition="fade" data-transition-speed="slow">
+      <div class="full-bleed" style="align-items: center; justify-content: center; text-align: center;">
+
+        <div class="deco-wrap">
+          <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="rg-ty" cx="50%" cy="50%" r="55%">
+                <stop offset="0%" stop-color="#d4a843" stop-opacity="0.12"/>
+                <stop offset="60%" stop-color="#1a3a5c" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#rg-ty)"/>
+            <!-- Concentric rings -->
+            <circle cx="50%" cy="50%" r="130" fill="none" stroke="#d4a843" stroke-width="1" opacity="0.18"/>
+            <circle cx="50%" cy="50%" r="200" fill="none" stroke="#d4a843" stroke-width="0.6" opacity="0.10"/>
+            <circle cx="50%" cy="50%" r="280" fill="none" stroke="#d4a843" stroke-width="0.4" opacity="0.06"/>
+            <!-- Corner ornaments -->
+            <g stroke="#d4a843" stroke-width="1.5" opacity="0.25" fill="none">
+              <line x1="4%" y1="4%" x2="10%" y2="4%"/>
+              <line x1="4%" y1="4%" x2="4%"  y2="10%"/>
+              <line x1="96%" y1="4%"  x2="90%" y2="4%"/>
+              <line x1="96%" y1="4%"  x2="96%" y2="10%"/>
+              <line x1="4%"  y1="96%" x2="10%" y2="96%"/>
+              <line x1="4%"  y1="96%" x2="4%"  y2="90%"/>
+              <line x1="96%" y1="96%" x2="90%" y2="96%"/>
+              <line x1="96%" y1="96%" x2="96%" y2="90%"/>
+            </g>
+          </svg>
+        </div>
+
+        <div class="ty-emblem">🌿</div>
+
+        <div class="pill pill-gold" style="margin-bottom: 20px;">The End</div>
+
+        <h1 style="
+          font-family: 'Playfair Display', serif;
+          font-size: 4em;
+          font-weight: 900;
+          line-height: 1;
+          background: linear-gradient(135deg, #ffffff 0%, #f0c96a 50%, var(--gold) 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          margin: 0 0 14px;
+          letter-spacing: -1px;
+        ">Thank You</h1>
+
+        <p style="
+          font-family: 'Cormorant Garamond', serif;
+          font-size: 1.4em;
+          font-style: italic;
+          color: rgba(255,255,255,0.5);
+          margin-bottom: 36px;
+        ">May you find peace in the present moment</p>
+
+        <div style="
+          display: flex;
+          gap: 12px;
+          justify-content: center;
+          flex-wrap: wrap;
+        ">
+          <span class="tag" style="border-color: rgba(212,168,67,0.3); color: var(--gold);">Gratitude</span>
+          <span class="tag" style="border-color: rgba(78,205,196,0.3); color: #4ecdc4;">Mindfulness</span>
+          <span class="tag" style="border-color: rgba(168,216,168,0.3); color: var(--sage);">Simplicity</span>
+          <span class="tag" style="border-color: rgba(192,132,252,0.3); color: #c084fc;">Purpose</span>
+          <span class="tag" style="border-color: rgba(212,168,67,0.3); color: var(--gold);">Inner Peace</span>
+        </div>
+
+        <div style="
+          margin-top: 48px;
+          font-size: 0.72em;
+          color: rgba(255,255,255,0.2);
+          letter-spacing: 2px;
+          text-transform: uppercase;
+        ">Contentment Presentation · Built with Reveal.js</div>
+      </div>
+      <aside class="notes">Invite participants to share one takeaway. Close with a group moment of silence and gratitude.</aside>
+    </section>
+
+  </div><!-- /.slides -->
+</div><!-- /.reveal -->
+
+<!-- Reveal.js Core (local) -->
+<script src="assets/reveal.js"></script>
+
+<script>
+  Reveal.initialize({
+    // Core config
+    hash: true,
+    history: true,
+    controls: true,
+    controlsTutorial: true,
+    progress: true,
+    slideNumber: 'c/t',
+    showSlideNumber: 'all',
+    center: false,
+
+    // Dimensions
+    width: 1280,
+    height: 720,
+    margin: 0,
+    minScale: 0.2,
+    maxScale: 2.0,
+
+    // Transitions
+    transition: 'slide',
+    transitionSpeed: 'default',
+    backgroundTransition: 'fade',
+
+    // View
+    embedded: false,
+    help: true,
+    pause: true,
+    showNotes: false,
+
+    // Plugins — none required (we're CDN only, no plugins loaded)
+    plugins: []
+  });
+
+  // Keyboard shortcut hint
+  document.addEventListener('keydown', function(e) {
+    if (e.key === '?' || (e.key === '/' && e.shiftKey)) {
+      // Reveal's built-in help overlay
+    }
+  });
+</script>
+</body>
+</html>
